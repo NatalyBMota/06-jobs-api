@@ -27,7 +27,15 @@ export const handleJobs = () => {
       } else if (e.target === logoff) {
         showLoginRegister();
       }
-    }
+    } else if (e.target === logoff) {
+        setToken(null);
+
+        message.textContent = "You have been logged off.";
+
+        jobsTable.replaceChildren([jobsTableHeader]);
+
+        showLoginRegister();
+      }
   });
 };
 
