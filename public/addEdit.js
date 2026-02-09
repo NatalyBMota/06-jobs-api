@@ -1,32 +1,46 @@
-import { enableInput, inputEnabled, message, setDiv, token } from "./index.js";
-import { showJobs } from "./jobs.js";
+addEditDiv.addEventListener("click", async (e) => {
+  if (inputEnabled && e.target.nodeName === "BUTTON") {
+    if (e.target === addingJob) {
+      enableInput(false);
 
-let addEditDiv = null;
-let company = null;
-let position = null;
-let status = null;
-let addingJob = null;
+      let method = "POST";
+      let url = "/api/v1/jobs";
+      try {
+        const response = await fetch(url, {
+          method: method,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            company: company.value,
+            position: position.value,
+            status: status.value,
+          }),
+        });
 
-export const handleAddEdit = () => {
-  addEditDiv = document.getElementById("edit-job");
-  company = document.getElementById("company");
-  position = document.getElementById("position");
-  status = document.getElementById("status");
-  addingJob = document.getElementById("adding-job");
-  const editCancel = document.getElementById("edit-cancel");
+        const data = await response.json();
+        if (response.status === 201) {
+          // 201 indicates a successful create
+          message.textContent = "The job entry was created.";
 
-  addEditDiv.addEventListener("click", (e) => {
-    if (inputEnabled && e.target.nodeName === "BUTTON") {
-      if (e.target === addingJob) {
-        showJobs();
-      } else if (e.target === editCancel) {
-        showJobs();
+          company.value = "";
+          position.value = "";
+          status.value = "pending";
+
+          showJobs();
+        } else {
+          message.textContent = data.msg;
+        }
+      } catch (err) {
+        console.log(err);
+        message.textContent = "A communication error occurred.";
       }
-    }
-  });
-};
 
-export const showAddEdit = (job) => {
-  message.textContent = "";
-  setDiv(addEditDiv);
-};
+      enableInput(true);
+    } else if (e.target === editCancel) {
+      message.textContent = "";
+      showJobs();
+    }
+  }
+});
