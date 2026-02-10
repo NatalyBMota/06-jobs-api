@@ -33,6 +33,9 @@ export const handleJobs = () => {
 
         showLoginRegister();
       }
+    } else if (e.target.classList.contains("editButton")) {
+        message.textContent = "";
+        showAddEdit(e.target.dataset.id);
     }
   });
 };
