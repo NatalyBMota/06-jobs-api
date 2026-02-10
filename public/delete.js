@@ -29,15 +29,17 @@ export const deleteJob = async (jobId) => {
         if (response.status === 200) {
             message.textContent = "The job was successfully deleted"
             showJobs()
+            enableInput(true)
             console.log("Job deleted successfully.")
         } else {
             // might happen if the list has been updated since last display
             message.textContent = "The jobs entry was not found";
+            enableInput(true)
         }
         } catch (err) {
-            console.log(err);
-            message.textContent = "There was a problem deleting the job entry.";
+            console.log(err)
+            message.textContent = "There was a problem deleting the job entry."
+            enableInput(true)
         }
-        enableInput(true);
     }
 }
