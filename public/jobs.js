@@ -25,9 +25,6 @@ export const handleJobs = () => {
       if (e.target === addJob) {
         showAddEdit(null);
       } else if (e.target === logoff) {
-        showLoginRegister();
-      }
-    } else if (e.target === logoff) {
         setToken(null);
 
         message.textContent = "You have been logged off.";
@@ -36,6 +33,7 @@ export const handleJobs = () => {
 
         showLoginRegister();
       }
+    }
   });
 };
 
