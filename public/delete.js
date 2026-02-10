@@ -34,6 +34,7 @@ export const deleteJob = async (jobId) => {
         }
         } catch (err) {
             console.log(err);
+            message.textContent = "There was a problem deleting the job entry.";
         }
     }
 }
