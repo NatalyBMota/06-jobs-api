@@ -92,13 +92,15 @@ export const showAddEdit = async (jobId) => {
     enableInput(false);
 
     try {
-      const response = await fetch(`/api/v1/jobs/${jobId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(`/api/v1/jobs/${jobId}`, 
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
       if (response.status === 200) {
