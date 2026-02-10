@@ -32,10 +32,10 @@ export const handleJobs = () => {
         jobsTable.replaceChildren([jobsTableHeader]);
 
         showLoginRegister();
-      }
-    } else if (e.target.classList.contains("editButton")) {
+      } else if (e.target.classList.contains("editButton")) {
         message.textContent = "";
         showAddEdit(e.target.dataset.id);
+      }
     }
   });
 };
