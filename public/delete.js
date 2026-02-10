@@ -1,10 +1,12 @@
 import {
   message,
   token,
+  enableInput,
 } from "./index.js";
 import { showJobs } from "./jobs.js";
 
 export const deleteJob = async (jobId) => {
+    enableInput(false);
     console.log("Delete button clicked and deleteJob called.")
     console.log("Job ID:" , jobId)
     if (!jobId) {
@@ -36,5 +38,6 @@ export const deleteJob = async (jobId) => {
             console.log(err);
             message.textContent = "There was a problem deleting the job entry.";
         }
+        enableInput(true);
     }
 }
