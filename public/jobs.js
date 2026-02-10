@@ -62,8 +62,10 @@ export const showJobs = async () => {
 
     if (response.status === 200) {
       if (data.count === 0) {
+        jobsTableHeader.style.display = "none"
         jobsTable.replaceChildren(...children); // clear this for safety
       } else {
+        jobsTableHeader.style.display = ""
         for (let i = 0; i < data.jobs.length; i++) {
           let rowEntry = document.createElement("tr");
 
