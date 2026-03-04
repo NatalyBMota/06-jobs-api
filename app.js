@@ -1,5 +1,6 @@
 require('dotenv').config()
 require('express-async-errors')
+const path = require('path')
 
 // extra security packages
 const helmet = require('helmet')
@@ -9,6 +10,8 @@ const rateLimiter = require('express-rate-limit')
 
 const express = require('express')
 const app = express()
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
 
 // connectDB
 const connectDB = require('./db/connect')
@@ -41,6 +44,11 @@ app.use(xss())
 // })
 app.use('/auth', authRouter)
 app.use('/jobs', authenticateUser, jobsRouter)
+
+app.get('/', (req, res) => {
+  res.render('index', { pageTitle: 'Jobs List' })
+})
+
 app.use(express.static("public"));
 
 app.use(notFoundMiddleware);
