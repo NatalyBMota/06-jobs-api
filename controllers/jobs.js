@@ -70,10 +70,21 @@ const deleteJob = async (req, res) => {
     res.status(StatusCodes.OK).json({ msg: "The entry was deleted." });
 }
 
+const getNewJobForm = async (req, res) => {
+    res.status(StatusCodes.OK).json({
+        form: {
+            company: '',
+            position: '',
+            status: 'pending',
+        },
+    })
+}
+
 module.exports = {
     createJob,
     deleteJob,
     getAllJobs,
     updateJob,
-    getJob,    
+    getJob,
+    getNewJobForm,    
 }
