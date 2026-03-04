@@ -31,8 +31,8 @@ export const handleAddEdit = () => {
         let url = "/jobs";
 
         if (addingJob.textContent === "update") {
-          method = "PATCH";
-          url = `/jobs/${addEditDiv.dataset.id}`;
+          method = "POST";
+          url = `/jobs/update/${addEditDiv.dataset.id}`;
         }
 
         try {
