@@ -39,8 +39,8 @@ app.use(xss())
 // app.get('/', (req, res) => {
 //   res.send('Jobs API')
 // })
-app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/jobs', authenticateUser, jobsRouter)
+app.use('/auth', authRouter)
+app.use('/jobs', authenticateUser, jobsRouter)
 app.use(express.static("public"));
 
 app.use(notFoundMiddleware);

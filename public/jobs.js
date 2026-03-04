@@ -49,7 +49,7 @@ export const showJobs = async () => {
   try {
     enableInput(false);
 
-    const response = await fetch("/api/v1/jobs", {
+    const response = await fetch("/jobs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
