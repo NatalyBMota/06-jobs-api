@@ -92,7 +92,7 @@ export const showAddEdit = async (jobId) => {
     enableInput(false);
 
     try {
-      const response = await fetch(`/jobs/${jobId}`, 
+      const response = await fetch(`/jobs/edit/${jobId}`, 
         {
           method: "GET",
           headers: {
