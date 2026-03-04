@@ -14,6 +14,8 @@ router.route('/').post(createJob).get(getAllJobs)
 router.route('/new').get(getNewJobForm)
 router.route('/edit/:id').get(getJob)
 router.route('/update/:id').post(updateJob)
-router.route('/:id').get(getJob).delete(deleteJob).patch(updateJob)
+router.route('/delete/:id').post(deleteJob)
+// router.route('/:id').get(getJob).delete(deleteJob).patch(updateJob)
+router.route('/:id').get(getJob).patch(updateJob)
 
 module.exports = router
