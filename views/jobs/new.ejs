@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= pageTitle %></title>
+</head>
+<body>
+  <h1>add job</h1>
+  <% if (message) { %><p><%= message %></p><% } %>
+
+  <form method="POST" action="/jobs">
+    <div>
+      <label for="company">company:</label>
+      <input type="text" id="company" name="company" required />
+    </div>
+    <div>
+      <label for="position">position:</label>
+      <input type="text" id="position" name="position" required />
+    </div>
+    <div>
+      <label for="status">status:</label>
+      <select id="status" name="status">
+        <option value="pending">pending</option>
+        <option value="interview">interview</option>
+        <option value="declined">declined</option>
+      </select>
+    </div>
+    <% if (locals._csrf) { %>
+      <input type="hidden" name="_csrf" value="<%= locals._csrf %>" />
+    <% } %>
+    <button type="submit">add</button>
+  </form>
+
+  <p><a href="/jobs">cancel</a></p>
+</body>
+</html>

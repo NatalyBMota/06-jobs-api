@@ -1,6 +1,7 @@
 require('dotenv').config()
 require('express-async-errors')
 const path = require('path')
+const cookieParser = require('cookie-parser')
 
 // extra security packages
 const helmet = require('helmet')
@@ -34,6 +35,8 @@ app.use(
   })
 )
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
 app.use(helmet())
 app.use(cors())
 app.use(xss())
@@ -45,8 +48,11 @@ app.use(xss())
 app.use('/auth', authRouter)
 app.use('/jobs', authenticateUser, jobsRouter)
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
   res.render('index', { pageTitle: 'Jobs List' })
+}) */
+app.get('/', (req, res) => {
+  res.redirect('/jobs')
 })
 
 app.use(express.static("public"));
