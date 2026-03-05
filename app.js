@@ -42,15 +42,14 @@ app.use(cors())
 app.use(xss())
 
 // routes
-// app.get('/', (req, res) => {
-//   res.send('Jobs API')
-// })
+
+app.use((req, res, next) => {
+  res.locals.message = req.query.message || ''
+  next()
+})
 app.use('/auth', authRouter)
 app.use('/jobs', authenticateUser, jobsRouter)
 
-/* app.get('/', (req, res) => {
-  res.render('index', { pageTitle: 'Jobs List' })
-}) */
 app.get('/', (req, res) => {
   res.redirect('/jobs')
 })

@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title><%= pageTitle %></title>
-</head>
-<body>
-  <h1>Jobs List</h1>
-  <h2>logon</h2>
-  <% if (message) { %><p><%= message %></p><% } %>
-
+<%- include("../partials/head.ejs") %>
+<%- include("../partials/header.ejs") %>
+  <h2>User Credentials Verification</h2>
   <form method="POST" action="/auth/login">
-    <div>
-      <label for="email">email:</label>
-      <input type="email" id="email" name="email" required />
-    </div>
-    <div>
-      <label for="password">password:</label>
-      <input type="password" id="password" name="password" required />
-    </div>
-    <% if (locals._csrf) { %>
-      <input type="hidden" name="_csrf" value="<%= locals._csrf %>" />
-    <% } %>
-    <button type="submit">logon</button>
-  </form>
+    <table id="auth-login-table">
+        <tr>
+            <th colspan="2">Logon</th>
+        </tr>
 
-  <p><a href="/auth/register">register</a></p>
-</body>
-</html>
+        <% if (message) { %>
+            <tr>
+                <td colspan="2"><%= message %></td>
+            </tr>
+        <% } %>
+
+        <tr>
+            <td><label for="email">email:</label></td>
+            <td><input type="email" id="email" name="email" required /></td>
+        </tr>
+
+        <tr>
+            <td><label for="password">password:</label></td>
+            <td><input type="password" id="password" name="password" required /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <% if (locals._csrf) { %>
+                    <input type="hidden" name="_csrf" value="<%= locals._csrf %>" />
+                <% } %>
+
+                <button type="submit">logon</button>
+                <a href="/auth/register"><button type="button">register</button></a>
+            </td>
+        </tr>
+    </table>
+  </form>
+<%- include("../partials/footer.ejs") %>

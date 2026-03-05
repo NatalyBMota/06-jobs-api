@@ -7,11 +7,7 @@ const wantsHTML = (req) => req.accepts('html')
 const getAllJobs = async (req, res) => {
     const jobs = await Job.find({ createdBy: req.user.userId }).sort('createdAt')
     if (wantsHTML(req)) {
-        return res.status(StatusCodes.OK).render('jobs/index', {
-            pageTitle: 'Jobs List',
-            jobs,
-            message: req.query.message || '',
-        })
+        return res.status(StatusCodes.OK).render('jobs', { jobs })
     }
     res.status(StatusCodes.OK).json({ jobs, count: jobs.length })
 }
